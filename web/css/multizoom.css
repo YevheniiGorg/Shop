@@ -1,0 +1,164 @@
+/*html,*/
+/*body {*/
+    /*height: 100%;*/
+/*}*/
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+.magnifyarea { /* CSS to add shadow to magnified image. Optional */
+    box-shadow: 5px 5px 7px #818181;
+    -webkit-box-shadow: 5px 5px 7px #818181;
+    -moz-box-shadow: 5px 5px 7px #818181;
+    filter: progid:DXImageTransform.Microsoft.dropShadow(color=#818181, offX=5, offY=5, positive=true);
+    background: white;
+}
+
+.targetarea { /* CSS for container div(s) of the zoomable image */
+    width: 325px; /* wide or wider than the widest zoomable image */
+    height: 338px; /* high or higher than the tallest zoomable image */
+    margin-top:3px;
+}
+
+#two { /* Added CSS for second target div of zoomable images */
+    height: 243px; /* high or higher than the tallest zoomable image */
+}
+
+.targetarea img { /* zoomable image */
+    margin: auto; /* for horizontal centering */
+    display: block; /* also for horizontal centering */
+    position: relative; /* along with on the fly calculations in script, for vertical centering */
+    border-width: 0;
+}
+
+.thumbs { /* divs holding the trigger links - styles optional, used here to center their links below their respective zoomable image */
+    padding-top: 25px;
+    width: 325px;
+    text-align: center;
+}
+
+.thumbs a { /* trigger links on the thumbnail images */
+    text-decoration: none; /* avoid underlines of images, text or spaces in these links */
+}
+
+.thumbs img { /* trigger images - the thumbnails used to load new zoomable images into the targetarea */
+    border-width: 0; /* avoid default borders in some browsers */
+}
+
+#description, #description2 {
+    position: absolute; /* required for description folows image bottom (descpos: true) */
+    width: 325px; /* should be width of zoomable image container (.targetarea) */
+    text-align: center;
+    font: bold 95% sans-serif;
+    margin-top: 3px; /* when following image bottom, this sets a fixed distance for that */
+    color: #222;
+    background-color: #fff;
+}
