@@ -46,7 +46,7 @@ use yii\helpers\Html;
                         <div class="item">
                             <div class="col-sm-6">
                                 <h1><span>BABY</span>-SHOP</h1>
-                                <h2>Free Ecommerce Template</h2>
+                                <h2>Успей на распродажу</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
@@ -104,8 +104,8 @@ use yii\helpers\Html;
                     <div class="price-range"><!--price-range-->
                         <h2>Ценовой диапазон</h2>
                         <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="2000" data-slider-step="5" data-slider-value="[0,2000]" id="sl2" ><br />
+                            <b class="pull-left">&#8372; 0</b> <b class="pull-right">&#8372; 2000</b>
                         </div>
                     </div><!--/price-range-->
 
@@ -120,18 +120,18 @@ use yii\helpers\Html;
                 <?php if(!empty($hits)): ?>
 
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
+                    <h2 class="title text-center">Популярные товары</h2>
                     <?php foreach ($hits as $hit):  ?>
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <a href="<?= \yii\helpers\Url::to(['product/view','id'=>$hit->id]) ?>">
-                                        <?= \yii\helpers\Html::img($hit->getImage()->getUrl(),['alt'=>$hit->name,'height'=>200]) ?>
+                                        <?= \yii\helpers\Html::img($hit->getImage()->getUrl(),['alt'=>$hit->name]) ?>
                                     </a>
-                                    <h2>$<?= $hit->price ?></h2>
+                                    <h2>&#8372;<?= $hit->price ?></h2>
                                     <p><a href="<?= \yii\helpers\Url::to(['product/view','id'=>$hit->id]) ?>"><?= $hit->name ?></a></p>
-                                    <a href="<?= \yii\helpers\Url::to(['cart/add','id'=>$hit->id]) ?>" data-id="<?= $hit->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="<?= \yii\helpers\Url::to(['cart/add','id'=>$hit->id]) ?>" data-id="<?= $hit->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                 </div>
 
 

@@ -104,16 +104,19 @@ AppAsset::register($this);
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="<?= \yii\helpers\Url::to(['/admin']) ?>" class="active">Home</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/admin']) ?>" class="active">Заказы</a></li>
+
                                 <li class="dropdown"><a href="#">Категории<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="<?= \yii\helpers\Url::to(['category/index']) ?>">Список категорий</a></li>
                                         <li><a href="<?= \yii\helpers\Url::to(['category/create']) ?>">Добавить категорию</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Товары<i class="fa fa-angle-down"></i></a>
+
+                                <li class="dropdown"><a href="<?= \yii\helpers\Url::to(['product/index']) ?>">Товары<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="<?= \yii\helpers\Url::to(['product/index']) ?>">Список товаров</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['product/create']) ?>">Добавить товар</a></li>
                                     </ul>
                                 </li>
                             </ul>

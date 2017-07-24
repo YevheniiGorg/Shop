@@ -39,6 +39,9 @@ class ProductController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Product::find(),
+            'pagination'=>[
+                'pageSize'=>20
+            ],
         ]);
 
         return $this->render('index', [
@@ -135,6 +138,13 @@ class ProductController extends Controller
 
     public function actionDelete($id)
     {
+        $model = Product::find()
+            ->where(['id' => $id])
+            ->one();
+        $images = $model->getImages();
+        $model->removeImages();
+
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

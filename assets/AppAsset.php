@@ -37,7 +37,8 @@ class AppAsset extends AssetBundle
         "js/jquery.cookie.js",
         "js/jquery.accordion.js",
         "js/main.js",
-        "js/multizoom.js",
+//        "js/multizoom.js",
+//        "js/zoom.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',

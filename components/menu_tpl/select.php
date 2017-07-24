@@ -7,6 +7,6 @@
     <?= $tab . $category['name'] ?>
 <?php if (isset($category['childs'])): ?>
     <ul>
-        <?= $this->getMenuHtml($category['childs'], $tab .'-') ?>
+        <?= $this->getMenuHtml($category['childs'], $tab .'—') ?>
     </ul>
 <?php endif; ?>

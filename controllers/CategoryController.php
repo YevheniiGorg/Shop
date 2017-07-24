@@ -22,8 +22,9 @@ class CategoryController extends AppController{
         return $this->render('index',compact('hits'));
     }
 
-    public function actionView($id){
+    public function actionView($id,$limit=6){
        // $id=Yii::$app->request->get('id'); как вариант
+
 
         $category=Category::findOne($id);
         if (empty($category))throw new  \yii\web\HttpException(404,'Такой категории нет!');
@@ -31,12 +32,28 @@ class CategoryController extends AppController{
         //$products=Product::find()->where(['category_id'=>$id])->all();
         //Pagination
         $query=Product::find()->where(['category_id'=>$id]);
-        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>3,'forcePageParam'=>false,
+        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>$limit,'forcePageParam'=>false,
             'pageSizeParam'=>false]);
         $products=$query->offset($pages->offset)->limit($pages->limit)->all();
 
         $this->setMeta('MyShop | '.$category->name, $category->keywords,$category->description);
         return $this->render('view',compact('products', 'pages', 'category'));
+    }
+
+    public function actionLimit($id, $limit)
+    {
+        $category=Category::findOne($id);
+        if (empty($category))throw new  \yii\web\HttpException(404,'Такой категории нет!');
+
+        //Pagination
+        $query=Product::find()->where(['category_id'=>$id]);
+        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>$limit,'forcePageParam'=>false,
+            'pageSizeParam'=>false]);
+        $products=$query->offset($pages->offset)->limit($pages->limit)->all();
+//        $this->debug($products);
+        $this->setMeta('MyShop | '.$category->name, $category->keywords,$category->description);
+        return $this->render('view',compact('products', 'pages', 'category'));
+        //$this->renderPartial('view',$products,true);
     }
 
     public function actionSearch(){
@@ -45,7 +62,7 @@ class CategoryController extends AppController{
         if (!$q)
             return $this->render('search');//если пустая строка
         $query=Product::find()->where(['like','name',$q]);
-        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>3,'forcePageParam'=>false,
+        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>6,'forcePageParam'=>false,
             'pageSizeParam'=>false]);
         $products=$query->offset($pages->offset)->limit($pages->limit)->all();
         return $this->render('search', compact('products','pages','q'));

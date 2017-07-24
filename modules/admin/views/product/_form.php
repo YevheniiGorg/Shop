@@ -39,6 +39,11 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
     <hr>
+    <div class="addPhoto">
+        <h4><a >Добавление фото(подсказка)</a></h4>
+        <p>При отсуцтвии главной фотографии - главной будет первая из галлереи.</p>
+    </div>
+
     <h2>Главное фото</h2>
     <?= "<img src='{$model->getImage()->getUrl()}'>"?>
 
@@ -46,27 +51,26 @@ mihaildev\elfinder\Assets::noConflict($this);
     <hr>
     <h2>Галлерея</h2>
 
-
     <?php
     $img = $model->getImage();
     $gallery = $model->getImages();
-
-    // print_r($gallery );
-    $img_str='';
-    echo ' <div class="row">';
-    foreach($gallery as $img_g){
-        $url_delete=Url::toRoute(['product/del-item', 'id' => $model->id, 'id_img' => $img_g->id]); //настройка роутера на нужный урл
-        $img_str.='		
-		<div class="col-xs-6 col-md-3">
-		<div  class="thumbnail reshenie_image_form">
-			 <a class="btn delete_img" title="Удалить?" href="'.$url_delete.'" data-id="'.$img_g->id.'"><span class="glyphicon glyphicon-remove"></span></a> 
-		  <a class="fancybox img-rounded" rel="gallery1" href="'. $img_g->getUrl().'">'.Html::img($img_g->getUrl('x100'), ['alt' => '']).'</a>
-		</div>
-		</div> ';
-    }
-    echo $img_str;
-    echo '</div>';
     ?>
+     <div class="row">
+    <?php foreach ($gallery as $img_g): ?>
+       <?php $url_delete=Url::toRoute(['product/del-item', 'id' => $model->id, 'id_img' => $img_g->id]);?>
+         <div class="col-xs-6 col-md-3">
+
+                 <?php if(!$model->isNewRecord): ?>
+                 <div  class="thumbnail reshenie_image_form">
+                     <a class="btn delete_img" title="Удалить?" href="<?= $url_delete ?>" data-id="'.$img_g->id.'"><span class="glyphicon glyphicon-remove"></span></a>
+                     <?php endif ?>
+                 <a class="fancybox img-rounded" rel="gallery1" href="<?= $img_g->getUrl()?>"><?= Html::img($img_g->getUrl('x100'), ['alt' => ''])?></a>
+             </div>
+         </div>
+
+    <?php endforeach; ?>
+    </div>
+
 
 
 <!--    --><?php
@@ -89,7 +93,7 @@ mihaildev\elfinder\Assets::noConflict($this);
     <?= $form->field($model, 'sale')->checkbox([ '0', '1', ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

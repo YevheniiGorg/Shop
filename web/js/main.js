@@ -114,4 +114,27 @@ $(document).ready(function () {
             zIndex: 2147483647 // Z-Index for the overlay
         });
     });
+
+    $('.addPhoto a').mouseover(function () {
+        $('.addPhoto p').show(1000);
+    });
+
+    $('#limit').change(function () {
+        var id = $(this).attr('name'),
+            limit = $('#limit').val();
+        $.ajax({
+            url: '/category/view',
+            data: {id: id, limit: limit},
+            type: 'GET',
+            success: function (res) {
+                if (!res) alert('Ошибка!');
+
+
+            },
+            error: function () {
+                alert("Ошибка!");
+            }
+        });
+    })
+
 });

@@ -3,95 +3,44 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 
-$this->registerJsFile('/web/js/zoom.js',['position' => yii\web\View::POS_HEAD]);
+
+$this->registerJsFile('/web/js/jquery.js',['position' => yii\web\View::POS_HEAD , 'type'=>'text/javascript']);
+$this->registerJsFile('/web/js/multizoom.js',['position'=>yii\web\View::POS_HEAD, 'type'=>'text/javascript' ]);
+$this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'type'=>'text/javascript' ]);
 ?>
 
 <section>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-<!--                <div class="left-sidebar">-->
-<!--                    <h2>Категории</h2>-->
-<!--                    <ul class="catalog category-products"><!--Category-->
-<!--                        --><?//= \app\components\MenuWidget::widget(['tpl'=>'menu']) ?>
-<!--                    </ul>-->
-<!---->
-<!--                    <div class="price-range"><!--price-range-->
-<!--                        <h2>Ценовой диапазон</h2>-->
-<!--                        <div class="well">-->
-<!--                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />-->
-<!--                            <b>$ 0</b> <b class="pull-right">$ 600</b>-->
-<!--                        </div>-->
-<!--                    </div><!--/price-range-->
-<!---->
-<!--                    <div class="shipping text-center"><!--shipping-->
-<!--                        <img src="/images/home/shipping.jpg" alt="" />-->
-<!--                    </div><!--/shipping-->
-<!---->
-<!--                </div>-->
-                <?php
-                $mainImg = $product->getImage();
-                $gallery = $product->getImages();
-                ?>
-
-                <div class="targetarea diffheight">
-                    <?= Html::img($mainImg->getUrl(),['alt'=>$product->name,'class'=>'view-product','id'=>'multizoom2']) ?>
-                </div>
-                <div id="description2">Angelina Jolie</div>
-                <div class="multizoom2 thumbs">
-                    <?php  foreach ($gallery as $img): ?>
-                        <div class="item">
-                        <?= Html::a(Html::img($img->getUrl('84x85'),['alt'=>'','class'=>'smallImg']),$img->getUrl('300x300'),['data-large'=>$img->getUrl('600x600'),'data-title'=>'Angelina Jolie']) ?>
-                            <?= Html::img($img->getUrl('84x85'),['alt'=>'','class'=>'smallImg']) ?></a>
-
-                            </div>
-
-                    <?php endforeach; ?>
-
-                    <!--                                <a href="images/saleensmall.jpg" data-large="images/saleen.jpg" data-title="Saleen S7 Twin Turbo">-->
-                    <!--                                    <img src="images/saleen_tmb.jpg" alt="Saleen" title=""/></a>-->
-                    <!--                                <a href="images/jaguarsmall.jpg" data-large="images/jaguar.jpg" data-title="Jaguar Type E">-->
-                    <!--                                    <img src="images/jaguar_tmb.jpg" alt="Jaguar" title=""/></a>-->
-                    <!--                                <a href="images/listenmusic.jpg" data-title="Relaxing Music" data-dims="300, 225">-->
-                    <!--                                    <img src="images/listen_tmb.jpg" alt="Relaxing Music" title=""/></a>-->
-                </div>
-            </div>
 
 
+        <?php
+        $mainImg = $product->getImage();
+        $gallery = $product->getImages();
+        ?>
+            <div class="col-sm-12 padding-right">
 
-            <div class="col-sm-11 padding-right">
                 <div class="product-details"><!--product-details-->
-                    <div class="col-sm-6">
-                        <div class="view-product">
-                            <?= Html::img($mainImg->getUrl(),['alt'=>$product->name,'class'=>'view-product']) ?>
-                            <h3>ZOOM</h3>
+                    <div class="col-sm-5">
+
+                        <!--                multizoom-->
+
+                        <div class="targetarea diffheight">
+                            <!--                    <img id="multizoom2" alt="zoomable" title="" src="/images/angelinasmall.jpg"/>-->
+                            <?= Html::img($mainImg->getUrl(),['alt'=>"zoomable",
+                                'id'=>'multizoom2','style'=>'width:250px;height:250px']) ?>
                         </div>
-                        <div id="similar-product" class="carousel slide" data-ride="carousel">
 
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <?php $count=count($gallery); $i=0; foreach ($gallery as $img): ?>
-                                     <?php if ($i%3==0): ?>
-                                <div class="item <?php if ($i==0) echo 'active'?> ">
-                                    <?php endif; ?>
-                                    <a href=""><?= Html::img($img->getUrl('84x85'),['alt'=>'','class'=>'smallImg']) ?></a>
+                        <div class="multizoom2 thumbs">
+<!--                            --><?//= Html::a(Html::img($mainImg->getUrl('84x85')),
+//                                [$mainImg->getUrl('250x250')],['data-large'=>$mainImg->getUrl()]) ?>
+                            `
+                            <?php foreach ($gallery as $img): ?>
+                                <?= Html::a(Html::img($img->getUrl('84x85')),
+                                    [$img->getUrl('250x250')],['data-large'=>$img->getUrl()]) ?>
+                            <?php endforeach; ?>
 
-                                    <?php $i++; if ($i%3==0 || $i==$count): ?>
-                               </div>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-
-                            </div>
-
-
-                            <!-- Controls -->
-                            <a class="left item-control" href="#similar-product" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right item-control" href="#similar-product" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         </div>
+                        <!--                /multizoom-->
 
                     </div>
                     <div class="col-sm-7">
@@ -106,35 +55,37 @@ $this->registerJsFile('/web/js/zoom.js',['position' => yii\web\View::POS_HEAD]);
                                     'class'=>'newarrival']) ?>
                             <?php endif;?>
                             <h2><?= $product->name ?></h2>
-                            <p>Web ID: 1089772</p>
+                            <p>ID : <?= $product->id ?></p>
                             <img src="/images/product-details/rating.png" alt="" />
                             <span>
 									<span>UAH &#8372; <?= $product->price ?></span>
-									<label>Quantity:</label>
+									<label>Количество:</label>
 									<input type="text" value="1" id="qty" />
 									<a href="#" data-id="<?= $product->id ?>" class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>
-										Add to cart
+										Добавить в корзину
 									</a>
 								</span>
-                            <p><b>Availability:</b> In Stock</p>
-                            <p><b>Condition:</b> New</p>
-                            <p><b>Brand:</b><a href="<?= \yii\helpers\Url::to(['category/view',
+                            <p><b>Доступность:</b> В наличии</p>
+                            <p><b>Состояние:</b> New</p>
+                            <p><b>Категория:</b><a href="<?= \yii\helpers\Url::to(['category/view',
                                     'id'=>$product->category->id]) ?>"> <?= $product->category->name ?></a></p>
-                            <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-
+<!--                            <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
 
 
                         </div><!--/product-information-->
 
                     </div>
 
-
                 </div><!--/product-details-->
+
 
                 <div class="category-tab shop-details-tab">
 
-                                        <?= $product->content ?><!-- Content -->
+                    <div class="product-content">
+                        <?= $product->content ?><!-- Content -->
+                    </div>
+
 
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">

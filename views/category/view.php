@@ -6,12 +6,6 @@ use yii\helpers\Html;
 ?>
 
 
-<section id="advertisement">
-    <div class="container">
-<!--        <img src="/images/shop/advertisement.jpg" alt="" />-->
-    </div>
-</section>
-
 <section>
     <div class="container">
         <div class="row">
@@ -22,25 +16,11 @@ use yii\helpers\Html;
                         <h2>Категории</h2>
                         <div class="brands-name">
                             <ul class="catalog category-products"><!--Categoryyy-->
-                               <?= \app\components\MenuWidget::widget(['tpl'=>'menu']) ?>
-                             </ul>
+                                <?= \app\components\MenuWidget::widget(['tpl'=>'menu']) ?>
+                            </ul>
                         </div>
                     </div><!--/category-productsr-->
 
-<!--                    <div class="brands_products"><!--brands_products-->
-<!--                        <h2>Brands</h2>-->
-<!--                        <div class="brands-name">-->
-<!--                            <ul class="nav nav-pills nav-stacked">-->
-<!--                                <li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>-->
-<!--                                <li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div><!--/brands_products-->
 
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
@@ -57,41 +37,32 @@ use yii\helpers\Html;
                 </div>
             </div>
 
-<!--
+
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center"><?= $category->name ?></h2>
+                    <h2 class="title text-center">
+                        <?= $category->name ?></h2>
                    <?php if (!empty($products)): ?>
                        <?php foreach ($products as $product): ?>
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
+                                    <a href="<?= \yii\helpers\Url::to(['product/view','id'=>$product->id]) ?>">
                                     <?=\yii\helpers\Html::img($product->getImage()->getUrl(),['alt'=>$product['name']]);?>
-<!--                                    --><?//= Html::img("@web/images/products/$product->img",['alt'=>$product->name]) ?>
-                                    <h2>$<?= $product->price ?></h2>
+                                    </a>
+
+                                    <h2>&#8372;<?= $product->price ?></h2>
                                     <p><a href="<?= \yii\helpers\Url::to(['product/view','id'=>$product->id])?>"><?= $product->name ?></a></p>
-                                    <a href="#"data-id="<?= $product->id ?>"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="#"data-id="<?= $product->id ?>"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Добавить а корзину</a>
                                 </div>
-<!--                                <div class="product-overlay">-->
-<!--                                    <div class="overlay-content">-->
-<!--                                        <h2>$56</h2>-->
-<!--                                        <p>Easy Polo Black Edition</p>-->
-<!--                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+
                                 <?php if ($product->new): ?>
                                     <?= Html::img("@web/images/home/new.png",['alt'=>'Новинка','class'=>'new']) ?>
                                 <?php endif;?>
                                 <?php if ($product->sale): ?>
                                     <?= Html::img("@web/images/home/sale.png",['alt'=>'Распродажа','class'=>'new']) ?>
                                 <?php endif;?>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -105,15 +76,38 @@ use yii\helpers\Html;
                        <?php  else:?>
                        <h2>Здесь товаров пока нет...</h2>
                     <?php endif; ?>
-                    <div class="clearfix"></div>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-6"> <p style=" text-align: right;">Выводить по:</p></div>
+                       <div class="col-sm-6">
+                               <select id="limit" size="1" name="<?= $category->id ?>"  style="width: 50px; ">
+                                   <option value="0">---</option>
+                                   <option value="9">9</option>
+                                   <option value="18">18</option>
+                                   <option value="27">27</option>
+                                   <option value="36">36</option>
+                                   <option value="45">45</option>
+                               </select>
 
-<!--                    <ul class="pagination">-->
-<!--                        <li class="active"><a href="">1</a></li>-->
-<!--                        <li><a href="">2</a></li>-->
-<!--                        <li><a href="">3</a></li>-->
-<!--                        <li><a href="">&raquo;</a></li>-->
-<!--                    </ul>-->
+
+                       </div>
+
+                    </div>
+                    <form action="/category/limit" method="get">
+                        <select id="limit" size="1" name="limit"  style="width: 50px; ">
+                            <option name="val" value="0">---</option>
+                            <option name="val" value="9">9</option>
+                            <option name="val" value="18">18</option>
+                            <option name="val" value="27">27</option>
+                            <option name="val" value="36">36</option>
+                            <option name="val" value="45">45</option>
+                        </select>
+                        <input type="text"name="id" value=" <?= $category->id ?>">
+                        <input type="submit"  >
+                    </form>
+
+
                 </div><!--features_items-->
             </div>
-
+        </div>
+    </div>
 </section>
