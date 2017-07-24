@@ -86,21 +86,6 @@ use yii\helpers\Html;
                         </div>
                     </div><!--/brands_products-->
 
-<!--                    <div class="brands_products"><!--brands_products-->
-<!--                        <h2>Бренды</h2>-->
-<!--                        <div class="brands-name">-->
-<!--                            <ul class="nav nav-pills nav-stacked">-->
-<!--                                <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>-->
-<!--                                <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div><!--/brands_products-->
-
                     <div class="price-range"><!--price-range-->
                         <h2>Ценовой диапазон</h2>
                         <div class="well text-center">
@@ -142,12 +127,7 @@ use yii\helpers\Html;
                                     <?= Html::img("@web/images/home/sale.png",['alt'=>'Распродажа','class'=>'new']) ?>
                                 <?php endif;?>
                             </div>
-<!--                            <div class="choose">-->
-<!--                                <ul class="nav nav-pills nav-justified">-->
-<!--                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>-->
-<!--                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
+
                         </div>
                     </div>
                         <?php endforeach; ?>
@@ -443,7 +423,7 @@ use yii\helpers\Html;
                 </div><!--/category-tab-->
 
                 <div class="recommended_items"><!--recommended_items-->
-                    <h2 class="title text-center">recommended items</h2>
+                    <h2 class="title text-center">Рекомендуемые товары</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">

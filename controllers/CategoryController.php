@@ -25,7 +25,6 @@ class CategoryController extends AppController{
     public function actionView($id,$limit=6){
        // $id=Yii::$app->request->get('id'); как вариант
 
-
         $category=Category::findOne($id);
         if (empty($category))throw new  \yii\web\HttpException(404,'Такой категории нет!');
 
@@ -37,24 +36,10 @@ class CategoryController extends AppController{
         $products=$query->offset($pages->offset)->limit($pages->limit)->all();
 
         $this->setMeta('MyShop | '.$category->name, $category->keywords,$category->description);
-        return $this->render('view',compact('products', 'pages', 'category'));
+        return $this->render('view',compact('products', 'pages', 'category','limit'));
     }
 
-    public function actionLimit($id, $limit)
-    {
-        $category=Category::findOne($id);
-        if (empty($category))throw new  \yii\web\HttpException(404,'Такой категории нет!');
 
-        //Pagination
-        $query=Product::find()->where(['category_id'=>$id]);
-        $pages=new Pagination(['totalCount'=>$query->count(),'pageSize'=>$limit,'forcePageParam'=>false,
-            'pageSizeParam'=>false]);
-        $products=$query->offset($pages->offset)->limit($pages->limit)->all();
-//        $this->debug($products);
-        $this->setMeta('MyShop | '.$category->name, $category->keywords,$category->description);
-        return $this->render('view',compact('products', 'pages', 'category'));
-        //$this->renderPartial('view',$products,true);
-    }
 
     public function actionSearch(){
         $q=trim(Yii::$app->request->get('q'));

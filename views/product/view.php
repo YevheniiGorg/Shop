@@ -25,18 +25,26 @@ $this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'ty
                         <!--                multizoom-->
 
                         <div class="targetarea diffheight">
-                            <!--                    <img id="multizoom2" alt="zoomable" title="" src="/images/angelinasmall.jpg"/>-->
+
                             <?= Html::img($mainImg->getUrl(),['alt'=>"zoomable",
                                 'id'=>'multizoom2','style'=>'width:250px;height:250px']) ?>
+                            <?php if ($product->new): ?>
+                                <?= Html::img("@web/images/home/new.png",['alt'=>'Новинка',
+                                    'class'=>'newarrival']) ?>
+                            <?php endif;?>
+                            <?php if ($product->sale): ?>
+                                <?= Html::img("@web/images/home/sale.png",['alt'=>'Распродажа',
+                                    'class'=>'newarrival']) ?>
+                            <?php endif;?>
                         </div>
 
                         <div class="multizoom2 thumbs">
-<!--                            --><?//= Html::a(Html::img($mainImg->getUrl('84x85')),
-//                                [$mainImg->getUrl('250x250')],['data-large'=>$mainImg->getUrl()]) ?>
-                            `
-                            <?php foreach ($gallery as $img): ?>
+
+                            <?php $i=0; foreach ($gallery as $img): ?>
+
                                 <?= Html::a(Html::img($img->getUrl('84x85')),
                                     [$img->getUrl('250x250')],['data-large'=>$img->getUrl()]) ?>
+                                <?php $i++; if ($i%3==0) echo '</br></br>'?>
                             <?php endforeach; ?>
 
                         </div>
@@ -46,14 +54,6 @@ $this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'ty
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
 
-                            <?php if ($product->new): ?>
-                                <?= Html::img("@web/images/home/new.png",['alt'=>'Новинка',
-                                    'class'=>'newarrival']) ?>
-                            <?php endif;?>
-                            <?php if ($product->sale): ?>
-                                <?= Html::img("@web/images/home/sale.png",['alt'=>'Распродажа',
-                                    'class'=>'newarrival']) ?>
-                            <?php endif;?>
                             <h2><?= $product->name ?></h2>
                             <p>ID : <?= $product->id ?></p>
                             <img src="/images/product-details/rating.png" alt="" />
@@ -72,20 +72,15 @@ $this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'ty
                                     'id'=>$product->category->id]) ?>"> <?= $product->category->name ?></a></p>
 <!--                            <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
 
-
                         </div><!--/product-information-->
-
                     </div>
-
                 </div><!--/product-details-->
 
 
                 <div class="category-tab shop-details-tab">
-
                     <div class="product-content">
                         <?= $product->content ?><!-- Content -->
                     </div>
-
 
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
@@ -274,10 +269,10 @@ $this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'ty
                         </div>
 
                     </div>
-                </div><!--/category-tab
+                </div><!--/category-tab-->
 
                 <div class="recommended_items"><!--recommended_items-->
-                    <h2 class="title text-center">recommended items</h2>
+                    <h2 class="title text-center">Рекомендуемые товары</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -289,9 +284,10 @@ $this->registerJsFile('/web/js/zoom.js',['position'=>yii\web\View::POS_HEAD, 'ty
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <?= Html::img("@web/images/products/{$hit->img}",
-                                                    ['alt'=>$hit->name]) ?>
-                                                <h2>$<?= $hit->price ?></h2>
+
+                                                <a href="<?= \yii\helpers\Url::to(['product/view','id'=>$hit->id]) ?>">
+                                                    <?= \yii\helpers\Html::img($hit->getImage()->getUrl(),['alt'=>$hit->name]) ?>
+                                                <h2>&#8372;<?= $hit->price ?></h2>
                                                 <p><a href="<?= \yii\helpers\Url::to(['product/view',
                                                         'id'=>$hit->id]) ?>"><?= $hit->name ?></a></p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>

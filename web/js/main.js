@@ -120,21 +120,26 @@ $(document).ready(function () {
     });
 
     $('#limit').change(function () {
-        var id = $(this).attr('name'),
-            limit = $('#limit').val();
-        $.ajax({
-            url: '/category/view',
-            data: {id: id, limit: limit},
-            type: 'GET',
-            success: function (res) {
-                if (!res) alert('Ошибка!');
+        $('#submit').click();
 
-
-            },
-            error: function () {
-                alert("Ошибка!");
-            }
-        });
+        // var id = $(this).attr('name'),
+        //     limit = $('#limit').val();
+        //
+        // var param = $('meta[name=csrf-param]').attr("content");
+        // var token = $('meta[name=csrf-token]').attr("content");
+        //
+        // $.ajax({
+        //     url: '/category/limit',
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     data: {id: id, limit: limit, param:token},
+        //     success: function (res) {
+        //         if (!res) alert('Ошибка1!');
+        //     },
+        //     error: function () {
+        //         alert("Ошибка2!");
+        //     }
+        // });
     })
 
 });

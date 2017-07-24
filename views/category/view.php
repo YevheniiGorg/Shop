@@ -23,10 +23,10 @@ use yii\helpers\Html;
 
 
                     <div class="price-range"><!--price-range-->
-                        <h2>Price Range</h2>
+                        <h2>Ценовой диапазон</h2>
                         <div class="well">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b>$ 0</b> <b class="pull-right">$ 600</b>
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="2000" data-slider-step="5" data-slider-value="[0,2000]" id="sl2" ><br />
+                            <b>&#8372; 0</b> <b class="pull-right">&#8372; 2000</b>
                         </div>
                     </div><!--/price-range-->
 
@@ -76,35 +76,21 @@ use yii\helpers\Html;
                        <?php  else:?>
                        <h2>Здесь товаров пока нет...</h2>
                     <?php endif; ?>
-                    <div class="row col-sm-12">
-                        <div class="col-sm-6"> <p style=" text-align: right;">Выводить по:</p></div>
-                       <div class="col-sm-6">
-                               <select id="limit" size="1" name="<?= $category->id ?>"  style="width: 50px; ">
-                                   <option value="0">---</option>
-                                   <option value="9">9</option>
-                                   <option value="18">18</option>
-                                   <option value="27">27</option>
-                                   <option value="36">36</option>
-                                   <option value="45">45</option>
-                               </select>
 
 
-                       </div>
-
-                    </div>
-                    <form action="/category/limit" method="get">
+                    <form action="/category/view" method="get">
+                        Выводить по:
                         <select id="limit" size="1" name="limit"  style="width: 50px; ">
-                            <option name="val" value="0">---</option>
-                            <option name="val" value="9">9</option>
-                            <option name="val" value="18">18</option>
-                            <option name="val" value="27">27</option>
-                            <option name="val" value="36">36</option>
-                            <option name="val" value="45">45</option>
-                        </select>
-                        <input type="text"name="id" value=" <?= $category->id ?>">
-                        <input type="submit"  >
-                    </form>
+                            <?php for ($i=6;$i<=50;$i+=6): ?>
 
+                            <option name="val" <?php if ($i==$limit) echo 'selected="selected"'?> value="<?= $i ?>"><?= $i ?></option>
+
+                            <?php endfor; ?>
+                        </select>
+                        <input type="text"name="id" style="visibility: hidden; margin-left: -150px;" value=" <?= $category->id ?>">
+                        <input id="submit" style="visibility: hidden;" type="submit"  >
+                    </form>
+                    Показано товаров: <?= $limit ?> из <?= $pages->totalCount ?>
 
                 </div><!--features_items-->
             </div>

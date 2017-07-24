@@ -1011,6 +1011,11 @@ h2.title {
  position:relative;
 }
 
+/*.productinfo a img{*/
+  /*width: 150px;*/
+  /*height: 150px;*/
+/*}*/
+
 .product-overlay {
   background:#FE980F;
   top: 0;
@@ -1350,8 +1355,8 @@ h2.title {
 
 .newarrival{
 	position:absolute;
-	top:0;
-	left:0
+	top:-250px;
+	left:104px;
 }
 
 .product-information h2 {
